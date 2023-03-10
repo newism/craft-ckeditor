@@ -1,0 +1,4 @@
+.DS_Store
+composer.lock
+/node_modules
+/src/web/ckeditor5-custom-build/node_modules

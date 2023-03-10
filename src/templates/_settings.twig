@@ -1,0 +1,19 @@
+{# @var plugin \Newism\CkEditor\Plugin #}
+{# @var settings \Newism\CkEditor\models\Settings #}
+
+{% import '_includes/forms' as forms %}
+
+{{ forms.autosuggestField({
+    label: 'CKEditor Build URL'|t('newism-ckeditor'),
+    instructions: 'The URL to {file}.'|t('newism-ckeditor', {
+        file: '`ckeditor.js`',
+    }),
+    id: 'build-url',
+    name: 'buildUrl',
+    value: settings.buildUrl,
+    first: true,
+    required: true,
+    suggestEnvVars: true,
+    suggestAliases: true,
+    errors: settings.getErrors('buildUrl'),
+}) }}

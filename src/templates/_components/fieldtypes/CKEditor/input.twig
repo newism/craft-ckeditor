@@ -1,0 +1,23 @@
+{% import "_includes/forms" as forms %}
+
+{% set id = id ?? "CKEditor#{random()}" -%}
+
+{{ forms.textarea({
+    id: id,
+    name: field.handle,
+    options: null,
+    value: value|default,
+    errors: field.getErrors(),
+    inputAttributes: { 'data': {ckeditorconfig: CKEditorConfig} }
+}) }}
+
+<script>
+    {% js %}
+    (function () {
+        const element = document.getElementById('{{ id|namespaceInputId }}');
+        const detail = element.dataset.ckeditorconfig;
+        const initEvent = new Event('newism:ckeditor:init', {bubbles: true, detail});
+        element.dispatchEvent(initEvent);
+    })();
+    {% endjs %}
+</script>

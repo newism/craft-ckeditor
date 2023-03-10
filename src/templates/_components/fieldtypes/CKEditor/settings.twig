@@ -1,0 +1,53 @@
+{% import "_includes/forms" as forms %}
+
+<h2>Assets</h2>
+<p>The following settings are used for both the <code>CraftLink</code> and <code>CraftAssets</code> CKEditor plugins.
+</p>
+{% if assetSourceOptions %}
+    {{ forms.checkboxSelectField({
+        label: "Sources"|t('app'),
+        instructions: "Which sources do you want to select {type} from?"|t('app', { type: 'assets' }),
+        id: 'assetSources',
+        name: 'assetSources',
+        options: assetSourceOptions,
+        values: field.assetSources,
+        showAllOption: true,
+    }) }}
+{% else %}
+    {{ forms.field({label: "Sources"|t('app')}, '<p class="error">' ~ "No sources exist yet."|t('app') ~ '</p>') }}
+{% endif %}
+{{ (assetSelectionConditionHtml ?? false) ? assetSelectionConditionHtml|raw }}
+<hr>
+
+<h2>Entries</h2>
+<p>The following settings are used for the <code>CraftLink</code> CKEditor plugins.</p>
+{% if entrySourceOptions %}
+    {{ forms.checkboxSelectField({
+        label: "Entry Sources"|t('app'),
+        instructions: "Which sources do you want to select {type} from?"|t('app', { type: 'entries' }),
+        id: 'entrySources',
+        name: 'entrySources',
+        options: entrySourceOptions,
+        values: field.entrySources,
+        showAllOption: true,
+    }) }}
+{% else %}
+    {{ forms.field({label: "Sources"|t('app')}, '<p class="error">' ~ "No sources exist yet."|t('app') ~ '</p>') }}
+{% endif %}
+{{ (entrySelectionConditionHtml ?? false) ? entrySelectionConditionHtml|raw }}
+
+<h2>InitJS (Advanced)</h2>
+<p>
+    This plugin first an `newism:ckeditor:init` event on the textarea when the field is initialized.
+    You can use this event to trigger the editor initialization.
+    Leave this field blank to use the default initialization.
+</p>
+{{ forms.textareaField({
+    label: 'Initialization Code'|t('newism-ckeditor'),
+    instructions: 'JavaScript code that should be used to initialize the editor, and then return it.'|t('ckeditor'),
+    id: 'init-js',
+    name: 'initJs',
+    value: field.initJs | default,
+    class: 'code nicetext',
+}) }}
+

@@ -1,0 +1,17 @@
+{
+	"plugins": [
+		{
+			"name": "Craft",
+			"className": "Craft",
+			"description": "Adds text to the editor.",
+			"path": "src/craft.js",
+			"uiComponents": [
+				{
+					"name": "craftButton",
+					"type": "Button",
+					"iconPath": "theme/icons/ckeditor.svg"
+				}
+			]
+		}
+	]
+}

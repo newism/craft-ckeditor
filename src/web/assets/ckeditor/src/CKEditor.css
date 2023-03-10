@@ -1,0 +1,8 @@
+:root {
+    --ck-z-default: 1;
+    --ck-z-modal: 99 !important;
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+    padding: 20px;
+}
